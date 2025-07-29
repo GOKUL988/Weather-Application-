@@ -1,0 +1,71 @@
+{%load static%}
+<html>
+    <head>
+        <title>{{city}} - {{region}}</title>
+    </head>
+    <link rel="stylesheet" href="{%static 'main.css' %}">
+    <body>
+        {% if city%}
+        <table align="center" width="50%" cellpadding="10px" class="tab1">  
+            <tr>
+                <th colspan="2">{{city}} -  {{region}}</th>
+            </tr>
+            <tr>
+                <th>REGION :  {{country}} , {{id}}</th>
+                <th>DATE AND TIME : {{date}}</th>
+            </tr>
+        </table>
+       <div class="home_div3" id="main_con2"> 
+         <table cellpadding="10px" align="center" class="left">
+            <tr>
+                <th class="deg_txt"><img src="{{condition_icon}}" alt="no use" class="whtr_img">{{temp_cel}}°C</th>
+            </tr>
+            <tr>
+                <th class="cont_txt">{{condition_text}}</th>
+            </tr> 
+         </table>
+        <table class="right">
+        <tr>
+                <th>wind speed </th>
+                <td>{{wind_kph}}</td>
+            </tr>
+            <tr>
+                <th>humidity </th>
+                <td>{{humidity}}</td>
+            </tr> 
+                <th>cloud </th>
+                <td>{{cloud}}</td>
+            </tr>
+            <tr>
+                <th>UV </th> 
+                <td>{{uv}}</td>
+            </tr>
+            <tr>
+                <th>Visuability  </th> 
+                <td>{{vis_km}}</td>
+            </tr>
+       </table>
+       </div>
+       <div>
+        <h2 align="center" class="tit_2">Weather Forecast for {{ forecast.location.name}} </h2>
+            <table align="center" cellpadding="15px" >
+                <tr>
+                    {% for day in forecast.forecast.forecastday%}
+                    <td class="main_div3_tab1_td">
+                        <ul>{{day.date}}</ul> 
+                        <ul><img src="{{day.day.condition.icon}}">{{day.day.avgtemp_c}}°C</ul>
+                        <ul>{{day.day.condition.text}}</ul>
+                    </td>
+                    {% endfor %}
+                </tr>
+            </table>
+       </div>
+
+       <div class="main_div4"><a href=" http://127.0.0.1:8000/"><input type="button" value="New search" class="but_back"></a></div>
+      {% else %}
+      <h2>SEARCHING CITY WEATHER DETAILS NOT FOUND</h2> 
+      {% endif %}
+    </body>
+       <script src="{% static 'main.js'%}"></script>
+</html>
+ 

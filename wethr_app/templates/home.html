@@ -1,0 +1,41 @@
+{%load static%}
+<html>
+    <head>
+        <title>Weather</title>
+        <link rel="stylesheet" href="{%static 'main.css' %}">
+    </head>
+    <body>
+       <div class="home_div1"><p class="a">Weather Application</p></div>
+       <div class="home_div2"><p class="typ">Based on API</p></div>
+       <div>
+        <form method="GET">
+        <table class="home_tab1" align="center">
+            <tr>
+                {% if search_but%}
+                <th>
+                    <input type="search" placeholder="ENTER THE CITY NAME" name="search" class="inp_tab1" id="Input" required>
+                    <input type="button" value=" 📍LOCATION" onclick="getLocation()" class="but_loc">
+                    <input type="submit" value="SEARCH" class="but_tab1">
+                </th>
+                {%endif%}
+            </tr>
+        </table>
+        </form>
+       </div>
+       {% block content %}
+       {%endblock%}
+       {% if notif%} 
+            <table class="none_mess" align="center" cellpadding="10px">
+                <tr>
+                    <th> CITY NOT FOUND !! </th>
+                </tr>
+                <tr>
+                    <th><a href=" http://127.0.0.1:8000/"><button>SEARCH</button></a></th>
+                </tr>
+            </table> 
+           
+       {%endif%}
+    </body>
+    <script src="{% static 'main.js'%}"></script>
+
+</html>
